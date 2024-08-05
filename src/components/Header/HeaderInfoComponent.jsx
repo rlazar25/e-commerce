@@ -1,6 +1,7 @@
 // ICONS
 import { CiLocationOn, CiDeliveryTruck } from "react-icons/ci";
-import { IoMdClose } from "react-icons/io";;
+import { IoMdClose } from "react-icons/io";
+
 
 function HeaderInfoComponent({setToggleHeader}) {
 
