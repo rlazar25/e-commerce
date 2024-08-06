@@ -38,7 +38,7 @@ function HeaderInfoComponent() {
                     </div>
                     <IoIosArrowUp size={24} className="cursor-pointer" onClick={handleCloseHeader} />
                 </div>
-            </div> : <div className="flex justify-end px-8 py-1 transition-all 1s"><IoIosArrowDown size={24} className="cursor-pointer" onClick={handleCloseHeader}  /></div> }
+            </div> : <div className="flex container mx-auto justify-end px-8 py-1 transition-all 1s"><IoIosArrowDown size={24} className="cursor-pointer" onClick={handleCloseHeader}  /></div> }
         </div>
     )
 }
