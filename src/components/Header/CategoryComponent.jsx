@@ -4,4 +4,4 @@ function CategoryComponent(){
     )
 } 
 
-export default CategoryComponent;
+export default CategoryComponent ;

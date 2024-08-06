@@ -10,7 +10,7 @@ function HeaderInfoComponent({setToggleHeader}) {
     }
 
     return (
-        <div className="flex items-center justify-between container mx-auto p-[2rem]">
+        <div className="flex flex-col lg:flex-row mx-auto items-center justify-between container p-[1rem] lg:p-[2rem]">
              <div>
                 <p>Need help? Call us: <a className="text-mainBlue" href="tel:(+98) 0234 456 789">(+98) 0234 456 789</a></p>
             </div>
