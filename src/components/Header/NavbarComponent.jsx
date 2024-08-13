@@ -2,6 +2,9 @@
 import logo from '../../assets/logo.png'
 // ICONS
 import { CiUser, CiShoppingCart, CiHeart } from "react-icons/ci";
+// CLERK
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
+
 
 function NavbarComponent() {
     return (
@@ -21,10 +24,7 @@ function NavbarComponent() {
 
                 {/* login/cart/favorite */}
                 <div className='flex mt-6 lg:mt-0 text-white items-center gap-[1.9rem]'>
-                    <div className='flex  items-center gap-[.6rem]'>
-                        <CiUser size={24} />
-                        <span>Login</span>
-                    </div>
+                
                     <div className='flex  items-center gap-[.6rem]'>
                         <div className='flex items-center'>
                             <CiHeart size={24} />
@@ -40,7 +40,15 @@ function NavbarComponent() {
                         </div>
                         <span>Cart</span>
                     </div>
-
+                    <div className='flex  items-center gap-[.6rem]'>
+                        <SignedOut>
+                            <CiUser size={24} />
+                            <SignInButton />
+                        </SignedOut>
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                    </div>
                 </div>
             </div>
         </div>

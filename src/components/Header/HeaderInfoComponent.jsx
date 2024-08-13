@@ -15,7 +15,7 @@ function HeaderInfoComponent() {
 
     return (
         <div>
-            {toggleHeader ? <div className="flex flex-col lg:flex-row mx-auto items-center justify-between container p-[1rem] lg:p-[2rem] transition-all 1s">
+            {toggleHeader ? <div className="flex flex-col lg:flex-row mx-auto items-center justify-between container p-[1rem] lg:p-[2rem] duration-1000">
                 <div>
                     <p>Need help? Call us: <a className="text-mainBlue" href="tel:(+98) 0234 456 789">(+98) 0234 456 789</a></p>
                 </div>
@@ -38,7 +38,7 @@ function HeaderInfoComponent() {
                     </div>
                     <IoIosArrowUp size={24} className="cursor-pointer" onClick={handleCloseHeader} />
                 </div>
-            </div> : <div className="flex container mx-auto justify-end px-8 py-1 transition-all 1s"><IoIosArrowDown size={24} className="cursor-pointer" onClick={handleCloseHeader}  /></div> }
+            </div> : <div className="flex container mx-auto justify-end px-8 py-1 duration-500"><IoIosArrowDown size={24} className="cursor-pointer" onClick={handleCloseHeader}  /></div> }
         </div>
     )
 }
