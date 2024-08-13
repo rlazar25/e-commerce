@@ -6,16 +6,19 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // PAGES
 import HomePage from './pages/HomePage.jsx';
+// REDUX
+import { Provider } from 'react-redux';
+import store from './store/store.js';
 
 const router = createBrowserRouter([
   // APP ROUTER
   {
-    path:'/',
+    path: '/',
     element: <App />,
     children: [
       {
         path: '/',
-        element: <HomePage /> 
+        element: <HomePage />
       }
     ]
   }
@@ -23,6 +26,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 );
