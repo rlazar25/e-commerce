@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png'
 import { CiUser, CiShoppingCart, CiHeart } from "react-icons/ci";
 // CLERK
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
+import { Link } from 'react-router-dom';
 
 
 function NavbarComponent() {
@@ -12,8 +13,9 @@ function NavbarComponent() {
             <div className='container mx-auto px-8 py-4 flex flex-col lg:flex-row items-center justify-between h-full'>
 
                 <div className='flex flex-col lg:flex-row items-center gap-4 lg:gap-[5.3rem]'>
-
-                    <img src={logo} alt="logo" />
+                    <Link to={'/'} >
+                        <img src={logo} alt="logo" />
+                    </Link>
 
                     {/* search */}
                     <div className='bg-white rounded-[20px]'>
