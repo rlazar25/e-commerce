@@ -19,9 +19,9 @@ function HomePage(){
         .catch(err => console.log(err))
     }, [])
     return(
-        <div>
+        <div className=" container mx-auto px-8 flex flex-wrap gap-8 items-center justify-center my-[50px]">
             {productLoader ? allProduct.map((product) =>{
-                return <CardProductComponent key={product.id} />
+                return <CardProductComponent key={product.id} product={product} />
             }) : <div className="flex justify-center my-8"> <LoaderComponent size={100} /></div>}
         </div>
     )

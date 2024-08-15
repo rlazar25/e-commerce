@@ -24,21 +24,21 @@ function NavbarComponent() {
 
                 {/* login/cart/favorite */}
                 <div className='flex mt-6 lg:mt-0 text-white items-center gap-[1.9rem]'>
-                
+
                     <div className='flex  items-center gap-[.6rem]'>
                         <div className='flex items-center'>
                             <CiHeart size={24} />
-                            <span className='bg-mainYellow rounded-full py-[2px] px-2 '>0</span>
+                            <span>Favorite</span>
                         </div>
-                        <span>Favorite</span>
+                        <span className='bg-mainYellow rounded-full py-[2px] px-2 '>0</span>
                     </div>
                     <div className='flex  items-center gap-[.6rem]'>
                         <div className='flex items-center'>
 
                             <CiShoppingCart size={24} />
-                            <span className='bg-mainYellow rounded-full py-[2px] px-2 '>0</span>
+                            <span>Cart</span>
                         </div>
-                        <span>Cart</span>
+                        <span className='bg-mainYellow rounded-full py-[2px] px-2 '>0</span>
                     </div>
                     <div className='flex  items-center gap-[.6rem]'>
                         <SignedOut>
