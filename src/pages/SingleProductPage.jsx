@@ -15,6 +15,8 @@ function SingleProductPage() {
     const [singleProduct, setSingleProduct] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [currentImage, setCurrentImage] = useState(0)
+    const [counter, setCounter] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
     const { id } = useParams();
 
     useEffect(() => {
@@ -24,7 +26,20 @@ function SingleProductPage() {
                 setIsLoading(true);
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [totalPrice])
+
+    function handleCounterIncrease() {
+        if (counter < singleProduct.stock) {
+            setCounter(counter + 1)
+        }
+    }
+    function handleCounterDecrease() {
+        if (counter > 0) {
+            setCounter(counter - 1)
+        }
+    }
+
+    
 
     return (
         <div className="container p-8 mx-auto">
@@ -49,9 +64,25 @@ function SingleProductPage() {
                         <p>{singleProduct.description}</p>
                     </div>
                     <div className=" border-b-2 py-16 border-slate-600 ">
-                        <div className="flex gap-5">
-                            <button className="bg-mainYellow text-white px-7 py-3 rounded-lg">Add to cart</button>
-                            <button className="bg-mainYellow text-white p-3  rounded-full"><FaRegHeart /></button>
+
+                        <div className="flex flex-col gap-6 font-medium">
+                            <div>
+                                <p>Total price: <span>${(singleProduct.price * counter).toFixed(2)}</span></p>
+                            </div>
+                            {/* increase */}
+                            <div className="flex gap-5 items-center mb-11 ">
+                                <p>Quantity :</p>
+                                <div className="flex items-center text-[18px]">
+                                    <span onClick={handleCounterDecrease} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
+                                    <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{counter}</p>
+                                    <span onClick={handleCounterIncrease} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
+                                </div>
+                            </div>
+                        </div>
+                        {/* buttons */}
+                        <div className="flex items-center gap-5">
+                            <button className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
+                            <button className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
                         </div>
                     </div>
                 </div>
