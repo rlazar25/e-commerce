@@ -9,6 +9,8 @@ import LoaderComponent from "../components/LoaderComponent";
 import { Rating } from "@mui/material";
 // icons
 import { FaRegHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice";
 
 function SingleProductPage() {
 
@@ -16,8 +18,8 @@ function SingleProductPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [currentImage, setCurrentImage] = useState(0)
     const [counter, setCounter] = useState(0)
-    const [totalPrice, setTotalPrice] = useState(0)
     const { id } = useParams();
+    const dispatch = useDispatch()
 
     useEffect(() => {
         productServices.getSingleProductService(id)
@@ -26,7 +28,7 @@ function SingleProductPage() {
                 setIsLoading(true);
             })
             .catch(err => console.log(err))
-    }, [totalPrice])
+    }, [])
 
     function handleCounterIncrease() {
         if (counter < singleProduct.stock) {
@@ -39,6 +41,9 @@ function SingleProductPage() {
         }
     }
 
+    function handleAddToCart(){
+        dispatch(addToCart(singleProduct))
+    }
     
 
     return (
@@ -81,7 +86,7 @@ function SingleProductPage() {
                         </div>
                         {/* buttons */}
                         <div className="flex items-center gap-5">
-                            <button className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
+                            <button onClick={handleAddToCart(singleProduct)} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
                             <button className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
                         </div>
                     </div>
