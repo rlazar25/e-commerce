@@ -4,7 +4,9 @@ import logo from '../../assets/logo.png'
 import { CiUser, CiShoppingCart, CiHeart } from "react-icons/ci";
 // CLERK
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
+// REACT ROUTER DOM
 import { Link } from 'react-router-dom';
+// REDUX
 import { useSelector } from 'react-redux';
 
 
@@ -39,11 +41,13 @@ function NavbarComponent() {
                         <span className='bg-mainYellow rounded-full py-[2px] px-2 '>0</span>
                     </div>
                     <div className='flex  items-center gap-[.6rem]'>
+                        <Link to={'/cart'}>
                         <div className='flex items-center'>
 
                             <CiShoppingCart size={24} />
                             <span>Cart</span>
                         </div>
+                        </Link>
                         <span className='bg-mainYellow rounded-full py-[2px] px-2 '>{totalProduct}</span>
                     </div>
                     <div className='flex  items-center gap-[.6rem]'>
