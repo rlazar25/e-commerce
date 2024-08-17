@@ -41,10 +41,8 @@ function SingleProductPage() {
         }
     }
 
-    function handleAddToCart(){
-        dispatch(addToCart(singleProduct))
-    }
-    
+
+
 
     return (
         <div className="container p-8 mx-auto">
@@ -86,7 +84,7 @@ function SingleProductPage() {
                         </div>
                         {/* buttons */}
                         <div className="flex items-center gap-5">
-                            <button onClick={handleAddToCart(singleProduct)} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
+                            <button onClick={() => dispatch(addToCart(singleProduct))} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
                             <button className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
                         </div>
                     </div>

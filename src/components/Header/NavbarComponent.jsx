@@ -5,9 +5,13 @@ import { CiUser, CiShoppingCart, CiHeart } from "react-icons/ci";
 // CLERK
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 function NavbarComponent() {
+
+    const {totalProduct} = useSelector(state => state.cartStore)
+
     return (
         <div className='bg-mainBlue lg:h-[100px] '>
             <div className='container mx-auto px-8 py-4 flex flex-col lg:flex-row items-center justify-between h-full'>
@@ -40,7 +44,7 @@ function NavbarComponent() {
                             <CiShoppingCart size={24} />
                             <span>Cart</span>
                         </div>
-                        <span className='bg-mainYellow rounded-full py-[2px] px-2 '>0</span>
+                        <span className='bg-mainYellow rounded-full py-[2px] px-2 '>{totalProduct}</span>
                     </div>
                     <div className='flex  items-center gap-[.6rem]'>
                         <SignedOut>
