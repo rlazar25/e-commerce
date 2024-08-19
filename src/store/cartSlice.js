@@ -21,10 +21,10 @@ const cartSlice = createSlice({
             })
 
             if(findIndex === null){
-                copyCart.push({...action.payload, count: 1, totalPrice: action.payload.price})
+                copyCart.push({...action.payload, quantity: 1, totalProductPrice: action.payload.price})
                 state.totalProduct++
             } else{
-                copyCart[findIndex].count++
+                copyCart[findIndex].quantity++
             }
             
 

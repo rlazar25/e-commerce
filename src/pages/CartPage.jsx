@@ -38,11 +38,11 @@ function CartPage() {
                                     <TableCell align="center">
                                         <div className="flex justify-center items-center text-[18px] font-medium">
                                             <span  className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
-                                            <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{counter}</p>
+                                            <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{product.quantity}</p>
                                             <span  className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
                                         </div>
                                     </TableCell>
-                                    <TableCell align="center">${product.cartTotal}</TableCell>
+                                    <TableCell align="center">${product.totalProductPrice * product.quantity}</TableCell>
                                     <TableCell align="right">
                                         <button className='text-red-400'>Remove</button>
                                     </TableCell>
