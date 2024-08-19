@@ -24,7 +24,9 @@ const cartSlice = createSlice({
                 copyCart.push({...action.payload, quantity: 1, totalProductPrice: action.payload.price})
                 state.totalProduct++
             } else{
-                copyCart[findIndex].quantity++
+                if(copyCart[findIndex].quantity < copyCart[findIndex].stock){
+                    copyCart[findIndex].quantity++
+                }
             }
             
 
