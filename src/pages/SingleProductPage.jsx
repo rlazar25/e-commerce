@@ -9,7 +9,7 @@ import LoaderComponent from "../components/LoaderComponent";
 import { Rating } from "@mui/material";
 // icons
 import { FaRegHeart } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 
 function SingleProductPage() {
@@ -17,9 +17,10 @@ function SingleProductPage() {
     const [singleProduct, setSingleProduct] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [currentImage, setCurrentImage] = useState(0)
-    const [counter, setCounter] = useState(0)
     const { id } = useParams();
+    
     const dispatch = useDispatch()
+    const {cart} = useSelector(state => state.cartStore)
 
     useEffect(() => {
         productServices.getSingleProductService(id)
@@ -30,19 +31,7 @@ function SingleProductPage() {
             .catch(err => console.log(err))
     }, [])
 
-    function handleCounterIncrease() {
-        if (counter < singleProduct.stock) {
-            setCounter(counter + 1)
-        }
-    }
-    function handleCounterDecrease() {
-        if (counter > 0) {
-            setCounter(counter - 1)
-        }
-    }
-
-
-
+    
 
     return (
         <div className="container p-8 mx-auto">
@@ -70,15 +59,15 @@ function SingleProductPage() {
 
                         <div className="flex flex-col gap-6 font-medium">
                             <div>
-                                <p>Total price: <span>${(singleProduct.price * counter).toFixed(2)}</span></p>
+                                <p>Total price: <span>${cart.map(product => (product.totalProductPrice * product.quantity).toFixed(2))}</span></p>
                             </div>
                             {/* increase */}
                             <div className="flex gap-5 items-center mb-11 ">
                                 <p>Quantity :</p>
                                 <div className="flex items-center text-[18px]">
-                                    <span onClick={handleCounterDecrease} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
-                                    <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{counter}</p>
-                                    <span onClick={handleCounterIncrease} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
+                                    <span className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
+                                    <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{cart.map((product) => product.quantity)}</p>
+                                    <span className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
                                 </div>
                             </div>
                         </div>
