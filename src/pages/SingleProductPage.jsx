@@ -22,6 +22,8 @@ function SingleProductPage() {
     const dispatch = useDispatch()
     const {cart} = useSelector(state => state.cartStore)
 
+    const cartItem = cart.find(product => product.id === singleProduct.id)
+
     useEffect(() => {
         productServices.getSingleProductService(id)
             .then(res => {
@@ -59,14 +61,14 @@ function SingleProductPage() {
 
                         <div className="flex flex-col gap-6 font-medium">
                             <div>
-                                <p>Total price: <span>${cart.map(product => (product.totalProductPrice * product.quantity).toFixed(2))}</span></p>
+                                <p>Total price: <span>${cartItem ? (cartItem.totalProductPrice * cartItem.quantity).toFixed(2): singleProduct.price}</span></p>
                             </div>
                             {/* increase */}
                             <div className="flex gap-5 items-center mb-11 ">
                                 <p>Quantity :</p>
                                 <div className="flex items-center text-[18px]">
                                     <span className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
-                                    <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{cart.map((product) => product.quantity)}</p>
+                                    <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{cartItem ? cartItem.quantity : 1}</p>
                                     <span className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
                                 </div>
                             </div>
