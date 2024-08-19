@@ -9,8 +9,12 @@ import LoaderComponent from "../components/LoaderComponent";
 import { Rating } from "@mui/material";
 // icons
 import { FaRegHeart } from "react-icons/fa";
+// redux
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+// toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SingleProductPage() {
 
@@ -18,9 +22,9 @@ function SingleProductPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [currentImage, setCurrentImage] = useState(0)
     const { id } = useParams();
-    
+
     const dispatch = useDispatch()
-    const {cart} = useSelector(state => state.cartStore)
+    const { cart } = useSelector(state => state.cartStore)
 
     const cartItem = cart.find(product => product.id === singleProduct.id)
 
@@ -33,7 +37,7 @@ function SingleProductPage() {
             .catch(err => console.log(err))
     }, [])
 
-    
+    const notify = () => toast.success("Added to cart", {autoClose: 2000});
 
     return (
         <div className="container p-8 mx-auto">
@@ -61,7 +65,7 @@ function SingleProductPage() {
 
                         <div className="flex flex-col gap-6 font-medium">
                             <div>
-                                <p>Total price: <span>${cartItem ? (cartItem.totalProductPrice * cartItem.quantity).toFixed(2): singleProduct.price}</span></p>
+                                <p>Total price: <span>${cartItem ? (cartItem.totalProductPrice * cartItem.quantity).toFixed(2) : singleProduct.price}</span></p>
                             </div>
                             {/* increase */}
                             <div className="flex gap-5 items-center mb-11 ">
@@ -75,12 +79,16 @@ function SingleProductPage() {
                         </div>
                         {/* buttons */}
                         <div className="flex items-center gap-5">
-                            <button onClick={() => dispatch(addToCart(singleProduct))} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
+                            <button onClick={() => {
+                                dispatch(addToCart(singleProduct))
+                                notify()
+                            }} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
                             <button className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
                         </div>
                     </div>
                 </div>
             </div> : <div className="flex justify-center mt-[5rem]"> <LoaderComponent size={100} /> </div>}
+            <ToastContainer />
         </div>
     )
 }
