@@ -2,10 +2,14 @@ import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { decreaseQuantityProduct, increaseQuantityProduct, removeFromCart } from "../store/cartSlice";
+import { toast, ToastContainer } from "react-toastify";
 
 function CartPage() {
     const { cart } = useSelector(state => state.cartStore)
     const dispatch = useDispatch()
+
+    const warningMsg = () => toast.warning("Out of stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
+    const deleteMsg = () => toast.error("Item Removed", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     return (
         <div className='mt-[50px]'>
             <div className='container p-8 mx-auto flex flex-col lg:flex-row gap-[20px]'>
@@ -38,12 +42,20 @@ function CartPage() {
                                         <div className="flex justify-center items-center text-[18px] font-medium">
                                             <span onClick={() => dispatch(decreaseQuantityProduct(product))} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
                                             <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{product.quantity}</p>
-                                            <span onClick={() => dispatch(increaseQuantityProduct(product))} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
+                                            <span onClick={() => {
+                                                dispatch(increaseQuantityProduct(product))
+                                                if (product.quantity >= product.stock) {
+                                                    warningMsg()
+                                                }
+                                            }} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
                                         </div>
                                     </TableCell>
                                     <TableCell align="center">${(product.totalProductPrice * product.quantity).toFixed(2)}</TableCell>
                                     <TableCell align="right">
-                                        <button onClick={() => dispatch(removeFromCart(product))} className='text-red-400'>Remove</button>
+                                        <button onClick={() => {
+                                            dispatch(removeFromCart(product));
+                                            deleteMsg();
+                                        }} className='text-red-400'>Remove</button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -56,6 +68,7 @@ function CartPage() {
                     <h2>CART TOTAL</h2>
                 </div>
             </div>
+            <ToastContainer limit={2} />
         </div>
     )
 }
