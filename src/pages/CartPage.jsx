@@ -1,7 +1,7 @@
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody } from "@mui/material";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../store/cartSlice";
+import { decreaseQuantityProduct, increaseQuantityProduct, removeFromCart } from "../store/cartSlice";
 
 function CartPage() {
     const { cart } = useSelector(state => state.cartStore)
@@ -36,9 +36,9 @@ function CartPage() {
                                     <TableCell align="center">${product.price}</TableCell>
                                     <TableCell align="center">
                                         <div className="flex justify-center items-center text-[18px] font-medium">
-                                            <span  className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
+                                            <span onClick={() => dispatch(decreaseQuantityProduct(product))} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
                                             <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{product.quantity}</p>
-                                            <span  className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
+                                            <span onClick={() => dispatch(increaseQuantityProduct(product))} className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
                                         </div>
                                     </TableCell>
                                     <TableCell align="center">${(product.totalProductPrice * product.quantity).toFixed(2)}</TableCell>
