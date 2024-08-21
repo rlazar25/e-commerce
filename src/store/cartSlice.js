@@ -31,9 +31,25 @@ const cartSlice = createSlice({
             
 
             state.cart = copyCart
+        },
+        removeFromCart: (state, action) => {
+            let copyCart = [...state.cart];
+            let findIndex = null;            
+
+            copyCart.find((item, index) =>{
+                if(item.id === action.payload.id){
+                    findIndex = index
+                    return;
+                }
+            })
+
+            copyCart.splice(findIndex, 1);
+            state.totalProduct--;
+            
+            state.cart = copyCart
         }
     }
 })
 
-export const {addToCart} = cartSlice.actions;
+export const {addToCart, removeFromCart} = cartSlice.actions;
 export default cartSlice.reducer;

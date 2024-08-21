@@ -1,12 +1,11 @@
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody } from "@mui/material";
-import { useState } from "react";
 // redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../store/cartSlice";
 
 function CartPage() {
-    const [counter, setCounter] = useState(0)
     const { cart } = useSelector(state => state.cartStore)
-
+    const dispatch = useDispatch()
     return (
         <div className='mt-[50px]'>
             <div className='container p-8 mx-auto flex flex-col lg:flex-row gap-[20px]'>
@@ -42,9 +41,9 @@ function CartPage() {
                                             <span  className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
                                         </div>
                                     </TableCell>
-                                    <TableCell align="center">${product.totalProductPrice * product.quantity}</TableCell>
+                                    <TableCell align="center">${(product.totalProductPrice * product.quantity).toFixed(2)}</TableCell>
                                     <TableCell align="right">
-                                        <button className='text-red-400'>Remove</button>
+                                        <button onClick={() => dispatch(removeFromCart(product))} className='text-red-400'>Remove</button>
                                     </TableCell>
                                 </TableRow>
                             ))}
