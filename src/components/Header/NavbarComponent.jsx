@@ -5,7 +5,7 @@ import { CiUser, CiShoppingCart, CiHeart } from "react-icons/ci";
 // CLERK
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 // REACT ROUTER DOM
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // REDUX
 import { useSelector } from 'react-redux';
 
@@ -20,9 +20,9 @@ function NavbarComponent() {
             <div className='container mx-auto px-8 py-4 flex flex-col lg:flex-row items-center justify-between h-full'>
 
                 <div className='flex flex-col lg:flex-row items-center gap-4 lg:gap-[5.3rem]'>
-                    <Link to={'/'} >
+                    <NavLink to={'/'} >
                         <img src={logo} alt="logo" />
-                    </Link>
+                    </NavLink>
 
                     {/* search */}
                     <div className='bg-white rounded-[20px]'>
@@ -35,20 +35,22 @@ function NavbarComponent() {
                 <div className='flex mt-6 lg:mt-0 text-white items-center gap-[1.9rem]'>
 
                     <div className='flex  items-center gap-[.6rem]'>
-                        <div className='flex items-center'>
-                            <CiHeart size={24} />
-                            <span>Favorite</span>
-                        </div>
+                        <NavLink to={'/favorite'} >
+                            <div className='flex items-center'>
+                                <CiHeart size={24} />
+                                <span>Favorite</span>
+                            </div>
+                        </NavLink>
                         <span className='bg-mainYellow rounded-full py-[2px] px-2 '>{totalFavorite}</span>
                     </div>
                     <div className='flex  items-center gap-[.6rem]'>
-                        <Link to={'/cart'}>
+                        <NavLink to={'/cart'}>
                             <div className='flex items-center'>
 
                                 <CiShoppingCart size={24} />
                                 <span>Cart</span>
                             </div>
-                        </Link>
+                        </NavLink>
                         <span className='bg-mainYellow rounded-full py-[2px] px-2 '>{totalProduct}</span>
                     </div>
                     <div className='flex  items-center gap-[.6rem]'>

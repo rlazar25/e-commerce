@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+.active{
+    text-decoration: underline;
+}
 
 
 /* From Uiverse.io by Ali-Tahmazi99 */ 
