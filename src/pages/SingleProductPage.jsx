@@ -38,8 +38,10 @@ function SingleProductPage() {
             .catch(err => console.log(err))
     }, [])
 
-    const notify = () => toast.success("Added to cart", { autoClose: 1000, position: "bottom-right", theme: "colored" });
-    const warningMsg = () => toast.warning("Out of stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
+    const notify = () => toast.success("Added to Cart", { autoClose: 1000, position: "bottom-right", theme: "colored" });
+    const warningMsg = () => toast.warning("Out of Stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
+    const favoriteMsg = () => toast.success("Added to Favorite", { autoClose: 1000, position: "bottom-right", theme: "colored" });
+    
 
     return (
         <div className="container p-8 mx-auto">
@@ -86,7 +88,7 @@ function SingleProductPage() {
                                 cartItem ? cartItem.quantity < singleProduct.stock ? notify() : warningMsg() : notify()
                             }}
                                 className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
-                            <button onClick={() => dispatch(addToFavorite(singleProduct))} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
+                            <button onClick={() => { favoriteMsg(); dispatch(addToFavorite(singleProduct))}} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
                         </div>
                     </div>
                 </div>
