@@ -12,7 +12,8 @@ import { useSelector } from 'react-redux';
 
 function NavbarComponent() {
 
-    const {totalProduct} = useSelector(state => state.cartStore)
+    const { totalProduct } = useSelector(state => state.cartStore);
+    const { totalFavorite } = useSelector(state => state.favoriteStore);
 
     return (
         <div className='bg-mainBlue lg:h-[100px] '>
@@ -38,15 +39,15 @@ function NavbarComponent() {
                             <CiHeart size={24} />
                             <span>Favorite</span>
                         </div>
-                        <span className='bg-mainYellow rounded-full py-[2px] px-2 '>0</span>
+                        <span className='bg-mainYellow rounded-full py-[2px] px-2 '>{totalFavorite}</span>
                     </div>
                     <div className='flex  items-center gap-[.6rem]'>
                         <Link to={'/cart'}>
-                        <div className='flex items-center'>
+                            <div className='flex items-center'>
 
-                            <CiShoppingCart size={24} />
-                            <span>Cart</span>
-                        </div>
+                                <CiShoppingCart size={24} />
+                                <span>Cart</span>
+                            </div>
                         </Link>
                         <span className='bg-mainYellow rounded-full py-[2px] px-2 '>{totalProduct}</span>
                     </div>

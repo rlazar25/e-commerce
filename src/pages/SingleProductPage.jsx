@@ -12,6 +12,7 @@ import { FaRegHeart } from "react-icons/fa";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+import { addToFavorite } from "../store/favoriteSlice";
 // toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -85,7 +86,7 @@ function SingleProductPage() {
                                 cartItem ? cartItem.quantity < singleProduct.stock ? notify() : warningMsg() : notify()
                             }}
                                 className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
-                            <button className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
+                            <button onClick={() => dispatch(addToFavorite(singleProduct))} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
                         </div>
                     </div>
                 </div>
