@@ -8,7 +8,7 @@ const favoriteSlice = createSlice({
     totalFavorite: 0
   },
   reducers: {
-    addToFavorite: (state, action) => {
+    favoriteStateAction: (state, action) => {
       let copyFavorite = [...state.allFavorite];
       let findIndex = null;
 
@@ -19,15 +19,17 @@ const favoriteSlice = createSlice({
       });
 
       if (findIndex === null) {
-        copyFavorite.push(action.payload);
+        copyFavorite.push({...action.payload, isFavorite: true});
         state.totalFavorite++;
+      } else{
+        copyFavorite.splice(findIndex, 1);
+        state.totalFavorite--;
       }
 
       state.allFavorite = copyFavorite;
-      console.log(state.allFavorite);
     },
   },
 });
 
-export const { addToFavorite } = favoriteSlice.actions;
+export const { favoriteStateAction } = favoriteSlice.actions;
 export default favoriteSlice.reducer;

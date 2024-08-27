@@ -8,11 +8,11 @@ import LoaderComponent from "../components/LoaderComponent";
 // mui
 import { Rating } from "@mui/material";
 // icons
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/cartSlice";
-import { addToFavorite } from "../store/favoriteSlice";
+import { favoriteStateAction } from "../store/favoriteSlice";
 // toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,8 +26,10 @@ function SingleProductPage() {
 
     const dispatch = useDispatch()
     const { cart } = useSelector(state => state.cartStore)
-
     const cartItem = cart.find(product => product.id === singleProduct.id)
+
+    const {allFavorite} = useSelector(state => state.favoriteStore)
+    const favoriteItem = allFavorite.find(product => product.id === singleProduct.id)
 
     useEffect(() => {
         productServices.getSingleProductService(id)
@@ -41,7 +43,13 @@ function SingleProductPage() {
     const notify = () => toast.success("Added to Cart", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const warningMsg = () => toast.warning("Out of Stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const favoriteMsg = () => toast.success("Added to Favorite", { autoClose: 1000, position: "bottom-right", theme: "colored" });
+    const removeFavoriteMsg = () => toast.error("Removed from Favorite", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     
+
+    function handleFavorite(singleProduct){
+        dispatch(favoriteStateAction(singleProduct));
+        favoriteItem ? removeFavoriteMsg() : favoriteMsg()
+    }
 
     return (
         <div className="container p-8 mx-auto">
@@ -87,8 +95,8 @@ function SingleProductPage() {
                                 dispatch(addToCart(singleProduct));
                                 cartItem ? cartItem.quantity < singleProduct.stock ? notify() : warningMsg() : notify()
                             }}
-                                className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg">Add to cart</button>
-                            <button onClick={() => { favoriteMsg(); dispatch(addToFavorite(singleProduct))}} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full"><FaRegHeart /></button>
+                                className="bg-mainYellow duration-500 hover:bg-mainBlue text-white px-7 py-3 rounded-lg font-semibold">Add to cart</button>
+                            <button onClick={() => handleFavorite(singleProduct)} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full">{favoriteItem ? <FaHeart size={20} /> : <FaRegHeart size={20} />}</button>
                         </div>
                     </div>
                 </div>
