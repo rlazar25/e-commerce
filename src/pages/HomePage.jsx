@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // SERVICES
 import productServices from "../services/productServices";
 // REDUX
@@ -8,23 +8,31 @@ import { saveAllProductAction } from "../store/productSlice";
 import CardProductComponent from "../components/CardProductComponent";
 import LoaderComponent from "../components/LoaderComponent";
 
-function HomePage(){
+function HomePage() {
 
-    const {allProduct, productLoader} = useSelector((state) => state.productStore)
+    const [loadMore, setLoadMore] = useState(16)
+    const { allProduct, productLoader } = useSelector((state) => state.productStore)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        productServices.getAllProductsService()
-        .then(res => dispatch(saveAllProductAction(res.data.products)))
-        .catch(err => console.log(err))
-    }, [])
-    return(
-        <div className=" container mx-auto px-8 flex flex-wrap gap-8 items-center justify-center my-[50px]">
-            {productLoader ? allProduct.map((product) =>{
-                return <CardProductComponent key={product.id} product={product} />
-            }) : <div className="flex justify-center my-8"> <LoaderComponent size={100} /></div>}
+        productServices.getAllProductsService(loadMore)
+            .then(res => dispatch(saveAllProductAction(res.data.products)))
+            .catch(err => console.log(err))
+    }, [loadMore])
+    return (
+        <div className=" container mx-auto px-8 ">
+            {productLoader ? <div>
+                <div className="flex flex-wrap gap-8 items-center justify-center my-[50px]">
+                    {allProduct.map((product) => {
+                        return <CardProductComponent key={product.id} product={product} />
+                    })}
+                </div>
+                <div className="flex justify-center my-8">
+                    <button onClick={() => setLoadMore(loadMore + 16)} className="bg-mainBlue duration-500 hover:bg-mainYellow text-white px-5 py-3 rounded-lg" >Load More</button>
+                </div>
+            </div> : <div className="flex justify-center my-8"> <LoaderComponent size={100} /></div>}
         </div>
     )
-} 
+}
 
 export default HomePage;
