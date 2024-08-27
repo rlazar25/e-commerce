@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 // SERVICES
 import productServices from "../services/productServices";
 // REDUX
@@ -10,27 +10,24 @@ import LoaderComponent from "../components/LoaderComponent";
 
 function HomePage() {
 
-    const [loadMore, setLoadMore] = useState(16)
-    const { allProduct, productLoader } = useSelector((state) => state.productStore)
+    const { allProduct, productLoader, selectCategory } = useSelector((state) => state.productStore)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        productServices.getAllProductsService(loadMore)
+        if (selectCategory) {
+            productServices.getAllProductsByCategory(selectCategory)
+                .then(res => dispatch(saveAllProductAction(res.data.products)))
+                .catch(err => console.log(err))
+        }
+        productServices.getAllProductsService()
             .then(res => dispatch(saveAllProductAction(res.data.products)))
             .catch(err => console.log(err))
-    }, [loadMore])
+    }, [selectCategory])
     return (
-        <div className=" container mx-auto px-8 ">
-            {productLoader ? <div>
-                <div className="flex flex-wrap gap-8 items-center justify-center my-[50px]">
-                    {allProduct.map((product) => {
-                        return <CardProductComponent key={product.id} product={product} />
-                    })}
-                </div>
-                <div className="flex justify-center my-8">
-                    <button onClick={() => setLoadMore(loadMore + 16)} className="bg-mainBlue duration-500 hover:bg-mainYellow text-white px-5 py-3 rounded-lg" >Load More</button>
-                </div>
-            </div> : <div className="flex justify-center my-8"> <LoaderComponent size={100} /></div>}
+        <div className=" container mx-auto px-8 flex flex-wrap gap-8 items-center justify-center my-[50px]">
+            {productLoader ? allProduct.map((product) => {
+                return <CardProductComponent key={product.id} product={product} />
+            }) : <div className="flex justify-center my-8"> <LoaderComponent size={100} /></div>}
         </div>
     )
 }
