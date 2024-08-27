@@ -1,23 +1,25 @@
 import { useState } from "react";
 // REDUX
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CardProductComponent from "../components/CardProductComponent";
 // REACT ROUTER DOM
 import { Link } from "react-router-dom";
 // ICONS
 import { CiGrid41, CiBoxList } from "react-icons/ci";
+import { gridListDisplayAction } from "../store/productSlice";
 
 function FavoritePage() {
 
-    const [isGrid, setIsGrid] = useState(true);
-    const { allFavorite } = useSelector(state => state.favoriteStore)
+    const { isGrid } = useSelector(state => state.productStore);
+    const { allFavorite } = useSelector(state => state.favoriteStore);
 
+    const dispatch = useDispatch();
 
     return (
         <div className="container mx-auto px-8 ">
             {allFavorite.length > 0 && <div className="hidden md:flex justify-end mt-4 gap-2">
-                <CiGrid41 onClick={() => setIsGrid(!isGrid)} size={30} className={isGrid ? "text-mainYellow" : "cursor-pointer"} />
-                <CiBoxList onClick={() => setIsGrid(!isGrid)} size={30} className={isGrid ? "cursor-pointer" : "text-mainYellow "} />
+                <CiGrid41 onClick={() => dispatch(gridListDisplayAction())} size={30} className={isGrid ? "text-mainYellow" : "cursor-pointer"} />
+                <CiBoxList onClick={() => dispatch(gridListDisplayAction())} size={30} className={isGrid ? "cursor-pointer" : "text-mainYellow "} />
             </div>}
 
             <div className="flex flex-wrap gap-8 items-center justify-center my-[50px]">

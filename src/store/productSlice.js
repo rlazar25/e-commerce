@@ -6,7 +6,8 @@ const productSlice = createSlice({
         allProduct: [],
         productLoader: false,
         selectCategory: '',
-        searchProduct: ''
+        searchProduct: '',
+        isGrid: true
     },
     reducers:{
         saveAllProductAction: (state, action) => {
@@ -18,9 +19,12 @@ const productSlice = createSlice({
         },
         saveSearchProductAction: (state, action) => {
             state.searchProduct = action.payload;
+        },
+        gridListDisplayAction: (state, action) => {
+            state.isGrid = !state.isGrid;
         }
     }
 })
 
-export const {saveAllProductAction, productLoader, saveSelectCategoryAction, saveSearchProductAction} = productSlice.actions;
+export const {saveAllProductAction, productLoader, saveSelectCategoryAction, saveSearchProductAction, gridListDisplayAction} = productSlice.actions;
 export default productSlice.reducer;

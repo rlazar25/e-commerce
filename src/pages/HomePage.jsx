@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import productServices from "../services/productServices";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
-import { saveAllProductAction } from "../store/productSlice";
+import { gridListDisplayAction, saveAllProductAction } from "../store/productSlice";
 // COMPONENTS
 import CardProductComponent from "../components/CardProductComponent";
 import LoaderComponent from "../components/LoaderComponent";
@@ -13,8 +13,8 @@ import { CiGrid41, CiBoxList } from "react-icons/ci";
 function HomePage() {
 
     const [loadMore, setLoadMore] = useState(16);
-    const [isGrid , setIsGrid] = useState(true);
     const { allProduct, productLoader, selectCategory, searchProduct } = useSelector((state) => state.productStore);
+    const { isGrid } = useSelector(state => state.productStore);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -38,8 +38,8 @@ function HomePage() {
     return (
         <div className=" container mx-auto px-8 ">
             <div className="hidden md:flex justify-end mt-4 gap-2">
-                <CiGrid41 onClick={() => setIsGrid(!isGrid)} size={30} className={isGrid ? "text-mainYellow" : "cursor-pointer"} />
-                <CiBoxList onClick={() => setIsGrid(!isGrid)} size={30} className={isGrid ? "cursor-pointer" : "text-mainYellow "} />
+            <CiGrid41 onClick={() => dispatch(gridListDisplayAction())} size={30} className={isGrid ? "text-mainYellow" : "cursor-pointer"} />
+            <CiBoxList onClick={() => dispatch(gridListDisplayAction())} size={30} className={isGrid ? "cursor-pointer" : "text-mainYellow "} />
             </div>
             {productLoader ? <div>
                 <div className={isGrid ? "flex flex-wrap gap-8 items-center justify-center my-[50px]" : 'flex my-[50px] flex-col items-center gap-8'}>
