@@ -21,6 +21,8 @@ function CartPage() {
     // Toastify
     const warningMsg = () => toast.warning("Out of stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const deleteMsg = () => toast.error("Item Removed", { autoClose: 1000, position: "bottom-right", theme: "colored" });
+    const clearCartMsg = () => toast.error("Cart Cleared", { autoClose: 1000, position: "bottom-right", theme: "colored" });
+    
 
     // handler
     function handleCuponCode() {
@@ -83,7 +85,7 @@ function CartPage() {
                     </TableContainer>
                     <div className='flex justify-evenly lg:justify-start gap-4 mt-5 '>
                         <Link to={'/'} className='bg-mainYellow hover:bg-mainBlue text-white px-5 py-3 rounded-lg self-start'>Continue Shopping</Link>
-                        <button onClick={() => dispatch(clearCartAction())} className='bg-red-500 hover:bg-red-600  text-white px-5 py-3 rounded-lg self-start'>Clear Cart</button>
+                        <button onClick={() => {dispatch(clearCartAction()); clearCartMsg()}}  className='bg-red-500 hover:bg-red-600  text-white px-5 py-3 rounded-lg self-start'>Clear Cart</button>
                     </div>
                 </div>
                 {/* INFO/CART */}
