@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 import store from './store/store.js';
 // CLERK
 import { ClerkProvider } from '@clerk/clerk-react';
+import ErrorPage from './pages/ErrorPage.jsx';
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
