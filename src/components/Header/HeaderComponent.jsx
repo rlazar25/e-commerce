@@ -1,7 +1,6 @@
 //components
 import HeaderInfoComponent from "./HeaderInfoComponent";
 import NavbarComponent from "./NavbarComponent";
-import CategoryComponent from "./CategoryComponent";
 
 function HeaderComponent(){
 
@@ -9,7 +8,6 @@ function HeaderComponent(){
         <div>
             <HeaderInfoComponent />
             <NavbarComponent />
-            <CategoryComponent />
         </div>
     )
 } 

@@ -57,7 +57,7 @@ function SingleProductPage() {
                 {/* left side */}
                 <div className="w-full lg:w-[50%] ">
                     <img className="border border-slate-700 mx-auto lg:mx-0 rounded-lg w-[70%] " src={singleProduct.images[currentImage]} alt={singleProduct.title} />
-                    <div className="flex gap-4 my-4">
+                    <div className="flex flex-wrap gap-4 my-4">
                         {singleProduct.images.map((img, index) => {
                             return <img className="w-[100px] border border-slate-700 rounded-lg" key={index} src={img} alt={singleProduct.title} onClick={() => setCurrentImage(index)} />
                         })}
