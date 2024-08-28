@@ -6,6 +6,7 @@ const cartSlice = createSlice({
     cart: [],
     cartLoader: false,
     totalProduct: 0,
+    totalPrice: 0
   },
   reducers: {
     addToCart: (state, action) => {
@@ -25,9 +26,11 @@ const cartSlice = createSlice({
           totalProductPrice: action.payload.price,
         });
         state.totalProduct++;
+        state.totalPrice += action.payload.price;
       } else {
         if (copyCart[findIndex].quantity < copyCart[findIndex].stock) {
           copyCart[findIndex].quantity++;
+          state.totalPrice += action.payload.price;
         }
       }
 
@@ -45,6 +48,8 @@ const cartSlice = createSlice({
 
       copyCart.splice(findIndex, 1);
       state.totalProduct--;
+        state.totalPrice -= action.payload.price * action.payload.quantity;
+
 
       state.cart = copyCart;
     },
@@ -60,6 +65,8 @@ const cartSlice = createSlice({
 
       if (findIndex !== null && copyCart[findIndex].quantity > 1) {
         copyCart[findIndex].quantity--;
+
+        state.totalPrice -= action.payload.price;
       }
 
       state.cart = copyCart;
@@ -76,6 +83,8 @@ const cartSlice = createSlice({
 
       if (copyCart[findIndex].quantity < copyCart[findIndex].stock) {
         copyCart[findIndex].quantity++;
+
+        state.totalPrice += action.payload.price;
       }
 
       state.cart = copyCart;
@@ -83,6 +92,7 @@ const cartSlice = createSlice({
     clearCartAction: (state, action) => {
       state.cart = [];
       state.totalProduct = 0;
+      state.totalPrice = 0;
     }
   }
 });

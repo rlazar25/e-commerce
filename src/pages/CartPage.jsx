@@ -8,7 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 
 function CartPage() {
-    const { cart } = useSelector(state => state.cartStore)
+    const { cart, totalPrice } = useSelector(state => state.cartStore)
     const dispatch = useDispatch()
 
     const warningMsg = () => toast.warning("Out of stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
@@ -17,7 +17,7 @@ function CartPage() {
         <div className='mt-[50px]'>
             {cart.length > 0 ? <div className='container p-8 mx-auto flex flex-col lg:flex-row gap-[20px]'>
                 <div className='w-full lg:w-[70%]'>
-                    <TableContainer component={Paper} >
+                    <TableContainer className="rounded-lg" component={Paper} >
                         <Table sx={{ minWidth: 250 }} aria-label="simple table">
                             <TableHead className='bg-mainBlue'>
                                 <TableRow>
@@ -25,7 +25,7 @@ function CartPage() {
                                     <TableCell style={{ color: 'white' }} align="center">Price</TableCell>
                                     <TableCell style={{ color: 'white' }} align="center">Quantity</TableCell>
                                     <TableCell style={{ color: 'white' }} align="center">Subtotal</TableCell>
-                                    <TableCell style={{ color: 'white' }} align="right">Remove</TableCell>
+                                    <TableCell style={{ color: 'white' }} align="center">Remove</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -55,7 +55,7 @@ function CartPage() {
                                             </div>
                                         </TableCell>
                                         <TableCell align="center">${(product.totalProductPrice * product.quantity).toFixed(2)}</TableCell>
-                                        <TableCell align="right">
+                                        <TableCell align="center">
                                             <button onClick={() => {
                                                 dispatch(removeFromCart(product));
                                                 deleteMsg();
@@ -72,14 +72,30 @@ function CartPage() {
                     </div>
                 </div>
                 {/* INFO/CART */}
-                <div className='w-full lg:w-[30%]'>
-                    <h2>CART TOTAL</h2>
+                <div className='w-full lg:w-[30%] self-start border rounded-lg '>
+                    <h2 className="bg-mainBlue text-center text-white p-4 rounded-t-md">CART TOTAL</h2>
+                    <div className="px-8 py-3">
+                        <div className="flex justify-between border-b py-5 border-slate-700">
+                            <p>Subtotal: </p>
+                            <p>${totalPrice.toFixed(2)}</p>
+                        </div>
+                        <div className="flex flex-col gap-4 border-b py-5 border-slate-700">
+                            <input className="border placeholder:text-slate-700 border-slate-300 p-2 w-full rounded-lg" type="text" placeholder="Enter Coupon Code" />
+                            <button className="bg-mainBlue hover:bg-mainYellow  duration-500 text-white py-2 w-full rounded-lg ">Apply Coupon Code</button>
+                        </div>
+                        <div className=" py-5">
+
+                            <button className="bg-mainBlue hover:bg-mainYellow  duration-500 text-white py-2 w-full rounded-lg self-start">Checkout</button>
+                        </div>
+                    </div>
+
                 </div>
+                {/* if cart is empty */}
             </div> : <div className="text-center">
                 <h1 className="text-3xl font-semibold text-mainBlue text-center mt-[50px]">Cart is empty</h1>
                 <p>Check our <Link className="text-mainYellow" to="/">Products</Link></p>
             </div>}
-            
+
             <ToastContainer limit={2} />
         </div>
     )
