@@ -19,7 +19,7 @@ const cartSlice = createSlice({
         }
       });
 
-      if (findIndex === null) {
+      if (findIndex === null && action.payload.stock > 0) {
         copyCart.push({
           ...action.payload,
           quantity: 1,

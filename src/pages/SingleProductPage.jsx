@@ -28,7 +28,7 @@ function SingleProductPage() {
     const { cart } = useSelector(state => state.cartStore)
     const cartItem = cart.find(product => product.id === singleProduct.id)
 
-    const {allFavorite} = useSelector(state => state.favoriteStore)
+    const { allFavorite } = useSelector(state => state.favoriteStore)
     const favoriteItem = allFavorite.find(product => product.id === singleProduct.id)
 
     useEffect(() => {
@@ -44,12 +44,21 @@ function SingleProductPage() {
     const warningMsg = () => toast.warning("Out of Stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const favoriteMsg = () => toast.success("Added to Favorite", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const removeFavoriteMsg = () => toast.error("Removed from Favorite", { autoClose: 1000, position: "bottom-right", theme: "colored" });
-    
 
-    function handleFavorite(singleProduct){
+
+    function handleFavorite(singleProduct) {
         dispatch(favoriteStateAction(singleProduct));
         favoriteItem ? removeFavoriteMsg() : favoriteMsg()
     }
+
+    const getAvailabilityText = () => {
+        if (singleProduct.stock > 0) {
+          return cartItem && cartItem.quantity >= singleProduct.stock 
+            ? <span className="text-red-500">Out of Stock</span> 
+            : <span className="text-lime-500">In Stock</span>;
+        }
+        return <span className="text-red-500">Out of Stock</span>;
+      };
 
     return (
         <div className="container p-8 mx-auto">
@@ -65,28 +74,22 @@ function SingleProductPage() {
                 </div>
                 {/* right side */}
                 <div className="w-full lg:w-[50%]">
-                    <div className=" border-b-2 pb-16 border-slate-600 flex flex-col gap-4">
+                    <div className=" border-b-2 pb-8 py-8 border-slate-600 flex flex-col gap-4">
                         <h1 className="text-3xl font-medium text-mainBlue">{singleProduct.title}</h1>
                         <p className="text-3xl font-semibold text-slate-600">${singleProduct.price}</p>
                         <Rating name="read-only" value={singleProduct.rating} readOnly />
-                        <p className="font-medium">Availability: {singleProduct.stock > 0 ? <span className="text-lime-500">In Stock</span> : <span className="text-red-500">Out of Stock</span>} </p>
-                        <p>Hurry up! only <span className="font-semibold">{singleProduct.stock}</span> product left in stock!</p>
+                        <p className="font-medium">Availability: {getAvailabilityText()}</p>                        <p>Hurry up! only <span className="font-semibold">{cartItem ?  singleProduct.stock - cartItem.quantity : singleProduct.stock}</span> product left in stock!</p>
                         <p>{singleProduct.description}</p>
                     </div>
-                    <div className=" border-b-2 py-16 border-slate-600 ">
-
+                    <div className=" border-b-2 py-8 border-slate-600 ">
                         <div className="flex flex-col gap-6 font-medium">
                             <div>
                                 <p>Total price: <span>${cartItem ? (cartItem.totalProductPrice * cartItem.quantity).toFixed(2) : singleProduct.price}</span></p>
                             </div>
                             {/* increase */}
-                            <div className="flex gap-5 items-center mb-11 ">
+                            <div className="flex gap-2 items-center mb-11 ">
                                 <p>Quantity :</p>
-                                <div className="flex items-center text-[18px]">
-                                    <span className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">-</span>
-                                    <p className="w-16 text-center border border-slate-300 h-8 bg-slate-100">{cartItem ? cartItem.quantity : 1}</p>
-                                    <span className="cursor-pointer border border-slate-300 w-9 h-8 text-center bg-slate-100">+</span>
-                                </div>
+                                <p className="text-center ">{cartItem ? cartItem.quantity : 1}</p>
                             </div>
                         </div>
                         {/* buttons */}
@@ -99,6 +102,7 @@ function SingleProductPage() {
                             <button onClick={() => handleFavorite(singleProduct)} className="bg-mainYellow duration-500 hover:bg-mainBlue text-white p-3  rounded-full">{favoriteItem ? <FaHeart size={20} /> : <FaRegHeart size={20} />}</button>
                         </div>
                     </div>
+
                 </div>
             </div> : <div className="flex justify-center mt-[5rem]"> <LoaderComponent size={100} /> </div>}
             <ToastContainer limit={2} />
