@@ -79,6 +79,10 @@ const cartSlice = createSlice({
       }
 
       state.cart = copyCart;
+    },
+    clearCartAction: (state, action) => {
+      state.cart = [];
+      state.totalProduct = 0;
     }
   }
 });
@@ -88,5 +92,6 @@ export const {
   removeFromCart,
   decreaseQuantityProduct,
   increaseQuantityProduct,
+  clearCartAction
 } = cartSlice.actions;
 export default cartSlice.reducer;
