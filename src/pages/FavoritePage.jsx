@@ -25,7 +25,7 @@ function FavoritePage() {
             <div className="flex flex-wrap gap-8 items-center justify-center my-[50px]">
                 {allFavorite.length > 0 ? allFavorite.map(product => {
                     return <CardProductComponent key={product.id} product={product} isGrid={isGrid} />
-                }) : <div className="text-center "> <h2 className="text-2xl" >Add Products To Favorite</h2> <p>Check our <Link className="text-mainYellow" to="/">Products</Link></p> </div>}
+                }) : <div className="text-center "> <h1 className="text-3xl font-semibold text-mainBlue text-center my-10" >Add Products To Favorite</h1> <p>Check our <Link className="text-mainYellow" to="/">Products</Link></p> </div>}
 
             </div>
         </div>

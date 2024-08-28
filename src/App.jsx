@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import axios from "axios";
+import FooterComponent from "./components/FooterComponent";
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
     <div>
       <HeaderComponent />
       <Outlet />
+      <FooterComponent />
     </div>
   )
 }

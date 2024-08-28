@@ -29,7 +29,7 @@ function CartPage() {
     }
 
     return (
-        <div className='mt-[50px]'>
+        <div className='my-[50px]'>
             {cart.length > 0 ? <div className='container p-8 mx-auto flex flex-col lg:flex-row gap-[20px]'>
                 <div className='w-full lg:w-[70%]'>
                     <TableContainer className="rounded-lg" component={Paper} >
@@ -109,8 +109,8 @@ function CartPage() {
 
                 </div>
                 {/* if cart is empty */}
-            </div> : <div className="text-center">
-                <h1 className="text-3xl font-semibold text-mainBlue text-center mt-[50px]">Cart is empty</h1>
+            </div> : <div className="text-center my-[50px]">
+                <h1 className="text-3xl font-semibold text-mainBlue text-center my-10">Cart is empty</h1>
                 <p>Check our <Link className="text-mainYellow" to="/">Products</Link></p>
             </div>}
 
