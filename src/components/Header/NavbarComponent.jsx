@@ -38,7 +38,7 @@ function NavbarComponent() {
 
                         {/* search */}
                         <div className='bg-white rounded-[20px]'>
-                            <input onChange={e => setSearchProduct(e.target.value)} value={searchProduct} type="text" placeholder='Search any things' className='px-[25px] py-[17.5px] rounded-[20px] w-[200px] xl:w-[320px] outline-none placeholder:text-textColor' />
+                            <input onChange={e => setSearchProduct(e.target.value)} value={searchProduct} type="text" placeholder='Search anything' className='px-[25px] py-[17.5px] rounded-[20px] w-[200px] xl:w-[320px] outline-none placeholder:text-textColor' />
                             <button onClick={handleSearchProducts} className='bg-mainYellow  px-[25px] lg:px-[40px] py-[17.5px] rounded-[20px] text-white'>Search</button>
                         </div>
                     </div>

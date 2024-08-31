@@ -64,9 +64,9 @@ function SingleProductPage() {
         <div className="container p-8 mx-auto">
             {isLoading ? <div className=" flex flex-col lg:flex-row">
                 {/* left side */}
-                <div className="w-full lg:w-[50%] ">
+                <div className="w-full lg:w-[50%]">
                     <img className="border border-slate-700 mx-auto lg:mx-0 rounded-lg w-[70%] " src={singleProduct.images[currentImage]} alt={singleProduct.title} />
-                    <div className="flex flex-wrap gap-4 my-4">
+                    <div className="flex flex-wrap justify-center lg:justify-start gap-4 my-4">
                         {singleProduct.images.map((img, index) => {
                             return <img className="w-[100px] border border-slate-700 rounded-lg" key={index} src={img} alt={singleProduct.title} onClick={() => setCurrentImage(index)} />
                         })}
@@ -78,7 +78,8 @@ function SingleProductPage() {
                         <h1 className="text-3xl font-medium text-mainBlue">{singleProduct.title}</h1>
                         <p className="text-3xl font-semibold text-slate-600">${singleProduct.price}</p>
                         <Rating name="read-only" value={singleProduct.rating} readOnly />
-                        <p className="font-medium">Availability: {getAvailabilityText()}</p>                        <p>Hurry up! only <span className="font-semibold">{cartItem ?  singleProduct.stock - cartItem.quantity : singleProduct.stock}</span> product left in stock!</p>
+                        <p className="font-medium">Availability: {getAvailabilityText()}</p>
+                        <p>Hurry up! only <span className="font-semibold">{cartItem ?  singleProduct.stock - cartItem.quantity : singleProduct.stock}</span> product left in stock!</p>
                         <p>{singleProduct.description}</p>
                     </div>
                     <div className=" border-b-2 py-8 border-slate-600 ">
