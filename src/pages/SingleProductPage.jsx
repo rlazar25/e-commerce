@@ -40,6 +40,11 @@ function SingleProductPage() {
             .catch(err => console.log(err))
     }, [])
 
+    // scroll to top
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [id])
+
     const notify = () => toast.success("Added to Cart", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const warningMsg = () => toast.warning("Out of Stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const favoriteMsg = () => toast.success("Added to Favorite", { autoClose: 1000, position: "bottom-right", theme: "colored" });
