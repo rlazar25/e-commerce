@@ -98,7 +98,7 @@ function CartPage() {
                         </div>
                         <div className="flex flex-col gap-4 border-b py-5 border-slate-700">
                             <input ref={cuponCodeRef} className="border placeholder:text-slate-700 border-slate-300 p-2 w-full rounded-lg" type="text" placeholder="Enter Coupon Code" />
-                            <button onClick={handleCuponCode} className={cuponCode === 'your smile' ? "bg-slate-400 line-through duration-500 text-black py-2 w-full rounded-lg " : "bg-mainBlue hover:bg-mainYellow  duration-500 text-white py-2 w-full rounded-lg "}> {cuponCode === 'your smile' ? 'Cupon Applied' : 'Apply Cupon Code'}</button> 
+                            <button disabled={cuponCode === 'your smile'} onClick={handleCuponCode} className={cuponCode === 'your smile' ? "bg-slate-400 line-through duration-500 text-black py-2 w-full rounded-lg" : "bg-mainBlue hover:bg-mainYellow  duration-500 text-white py-2 w-full rounded-lg "}> {cuponCode === 'your smile' ? 'Cupon Applied' : 'Apply Cupon Code'}</button> 
                         </div>
                         <div className="flex flex-col gap-4 py-5">
                             <div className="flex justify-between text-[20px] font-semibold">
