@@ -65,10 +65,10 @@ function SingleProductPage() {
             {isLoading ? <div className=" flex flex-col lg:flex-row">
                 {/* left side */}
                 <div className="w-full lg:w-[50%]">
-                    <img className="border border-slate-700 mx-auto lg:mx-0 rounded-lg w-[70%] " src={singleProduct.images[currentImage]} alt={singleProduct.title} />
+                    <img className="shad mx-auto lg:mx-0 rounded-lg w-[70%] " src={singleProduct.images[currentImage]} alt={singleProduct.title} />
                     <div className="flex flex-wrap justify-center lg:justify-start gap-4 my-4">
                         {singleProduct.images.map((img, index) => {
-                            return <img className="w-[100px] border border-slate-700 rounded-lg" key={index} src={img} alt={singleProduct.title} onClick={() => setCurrentImage(index)} />
+                            return <img className="w-[100px] shad cursor-pointer rounded-lg" key={index} src={img} alt={singleProduct.title} onClick={() => setCurrentImage(index)} />
                         })}
                     </div>
                 </div>
