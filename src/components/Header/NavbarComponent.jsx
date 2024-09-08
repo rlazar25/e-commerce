@@ -22,7 +22,6 @@ function NavbarComponent() {
     const dispatch = useDispatch();
 
     function handleSearchProducts() {
-        console.log(searchProduct);
         dispatch(saveSearchProductAction(searchProduct));
         setSearchProduct('');
     }
@@ -50,7 +49,7 @@ function NavbarComponent() {
                             <NavLink to={'/favorite'} >
                                 <div className='flex items-center'>
                                     <CiHeart size={24} />
-                                    <span>Favorite</span>
+                                    <span className='hidden sm:block'>Favorite</span>
                                 </div>
                             </NavLink>
                             <span className='bg-mainYellow rounded-full py-[2px] px-2 '>{totalFavorite}</span>
@@ -60,7 +59,7 @@ function NavbarComponent() {
                                 <div className='flex items-center'>
 
                                     <CiShoppingCart size={24} />
-                                    <span>Cart</span>
+                                    <span className='hidden sm:block' >Cart</span>
                                 </div>
                             </NavLink>
                             <span className='bg-mainYellow rounded-full py-[2px] px-2 '>{totalProduct}</span>
