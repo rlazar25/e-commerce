@@ -6,7 +6,7 @@ function FooterComponent() {
     return (
         <footer className=" bg-sky-200">
             <div className='flex flex-col-reverse items-center gap-10 md:flex-row md:-flex-wrap justify-around container mx-auto mt-20 p-8 pt-20'>
-                <div className="flex flex-col gap-6 items-center md:items-start ">
+                <div className="flex flex-col gap-6 items-center">
                     <img src={logo} alt="logo" className='w-[150px] ' />
                     <p>64 st james boulevard hoswick , ze2 7zj</p>
                     <div className="flex gap-4 justify-center border-t py-6 border-slate-500 self-stretch ">

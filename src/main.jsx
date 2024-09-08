@@ -9,12 +9,14 @@ import HomePage from './pages/HomePage.jsx';
 import SingleProductPage from './pages/SingleProductPage.jsx';
 import CartPage from './pages/CartPage.jsx';
 import FavoritePage from './pages/FavoritePage.jsx';
+import CheckoutPage from './pages/CheckoutPage.jsx';
 // REDUX
 import { Provider } from 'react-redux';
 import store from './store/store.js';
 // CLERK
 import { ClerkProvider } from '@clerk/clerk-react';
 import ErrorPage from './pages/ErrorPage.jsx';
+
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/favorite',
         element: <FavoritePage />
+      },
+      {
+        path: '/checkout',
+        element: <CheckoutPage />
       }
     ]
   }

@@ -105,7 +105,7 @@ function CartPage() {
                                 <p>Total Amount: </p>
                                 <p>${cuponCode === 'your smile' ? (totalPrice / 2).toFixed(2) : totalPrice.toFixed(2)}</p>
                             </div>
-                            <button className="bg-mainBlue hover:bg-mainYellow  duration-500 text-white py-2 w-full rounded-lg self-start">Checkout</button>
+                            <Link to={'/checkout'} onClick={() => {dispatch(clearCartAction())}} className="bg-mainBlue hover:bg-mainYellow text-center duration-500 text-white py-2 w-full rounded-lg self-start">Buy Now</Link>
                         </div>
                     </div>
 
