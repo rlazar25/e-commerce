@@ -9,7 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 // react-router-dom
 import { Link } from "react-router-dom";
 
-function CartPage() {
+const CartPage = () => {
 
     const [cuponCode, setCuponCode] = useState("");
     const cuponCodeRef = useRef();
@@ -25,7 +25,7 @@ function CartPage() {
     
 
     // handler
-    function handleCuponCode() {
+    const handleCuponCode = () => {
         setCuponCode(cuponCodeRef.current.value);
         cuponCodeRef.current.value = "";
     }

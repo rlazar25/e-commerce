@@ -4,12 +4,12 @@ import { CiLocationOn, CiDeliveryTruck } from "react-icons/ci";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 
-function HeaderInfoComponent() {
+const HeaderInfoComponent = () => {
 
     const [toggleHeader, setToggleHeader] = useState(true);
 
 
-    function handleCloseHeader() {
+    const handleCloseHeader = () => {
         setToggleHeader(!toggleHeader)
     }
 

@@ -11,7 +11,7 @@ import LoaderComponent from "../components/LoaderComponent";
 import { CiGrid41, CiBoxList } from "react-icons/ci";
 import CategoryComponent from "../components/Header/CategoryComponent";
 
-function HomePage() {
+const HomePage = () => {
 
     const [loadMore, setLoadMore] = useState(16);
     const { allProduct, productLoader, selectCategory, searchProduct } = useSelector((state) => state.productStore);

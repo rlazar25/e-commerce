@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveSearchProductAction } from '../../store/productSlice';
 
 
-function NavbarComponent() {
+const NavbarComponent = () => {
 
     const [searchProduct, setSearchProduct] = useState('');
 
@@ -21,7 +21,7 @@ function NavbarComponent() {
 
     const dispatch = useDispatch();
 
-    function handleSearchProducts() {
+    const handleSearchProducts = () => {
         dispatch(saveSearchProductAction(searchProduct));
         setSearchProduct('');
     }

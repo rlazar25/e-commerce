@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { CiGrid41, CiBoxList } from "react-icons/ci";
 import { gridListDisplayAction } from "../store/productSlice";
 
-function FavoritePage() {
+const FavoritePage = () => {
 
     const { isGrid } = useSelector(state => state.productStore);
     const { allFavorite } = useSelector(state => state.favoriteStore);

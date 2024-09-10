@@ -1,4 +1,4 @@
-function LoaderComponent({size}) {
+const LoaderComponent =({size}) => {
     return (
 
         <div role="status">

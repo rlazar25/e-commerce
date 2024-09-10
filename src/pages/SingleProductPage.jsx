@@ -17,7 +17,7 @@ import { favoriteStateAction } from "../store/favoriteSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function SingleProductPage() {
+const SingleProductPage = () => {
 
     const [singleProduct, setSingleProduct] = useState({});
     const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +51,7 @@ function SingleProductPage() {
     const removeFavoriteMsg = () => toast.error("Removed from Favorite", { autoClose: 1000, position: "bottom-right", theme: "colored" });
 
 
-    function handleFavorite(singleProduct) {
+    const handleFavorite = (singleProduct) => {
         dispatch(favoriteStateAction(singleProduct));
         favoriteItem ? removeFavoriteMsg() : favoriteMsg()
     }

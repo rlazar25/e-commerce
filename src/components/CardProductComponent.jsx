@@ -1,7 +1,7 @@
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function CardProductComponent({ product, isGrid }) {
+const CardProductComponent = ({ product, isGrid }) => {
 
     return (
         <div className={isGrid ? "flex flex-col shad border w-[300px]  items-start rounded-lg p-2 " : 'flex flex-col w-[300px] items-start p-2 md:flex-row md:w-full md:justify-between md:px-8 md:items-center lg:w-[80%] shad rounded-lg'}>

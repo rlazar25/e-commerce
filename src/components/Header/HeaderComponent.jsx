@@ -2,7 +2,7 @@
 import HeaderInfoComponent from "./HeaderInfoComponent";
 import NavbarComponent from "./NavbarComponent";
 
-function HeaderComponent(){
+const HeaderComponent = () => {
 
     return(
         <div>

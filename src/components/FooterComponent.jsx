@@ -2,7 +2,8 @@ import logo from '../assets/logo-dark.png'
 // icons
 import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-function FooterComponent() {
+
+const FooterComponent =() => {
     return (
         <footer className=" bg-sky-200">
             <div className='flex flex-col-reverse items-center gap-10 md:flex-row md:-flex-wrap justify-around container mx-auto mt-20 p-8 pt-20'>

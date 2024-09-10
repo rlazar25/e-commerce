@@ -9,7 +9,7 @@ import { saveSelectCategoryAction } from "../../store/productSlice";
 // components
 import LoaderComponent from "../LoaderComponent";
 
-function CategoryComponent() {
+const CategoryComponent = () => {
     const [toggleCategory, setToggleCategory] = useState(false)
 
     const { allCategory, categoryLoader } = useSelector((state) => state.categoryStore);
@@ -21,7 +21,7 @@ function CategoryComponent() {
             .catch((err) => console.log(err))
     }, [])
 
-    function handleToggleCategory() {
+    const handleToggleCategory = () => {
         setToggleCategory(!toggleCategory)
     }
 
