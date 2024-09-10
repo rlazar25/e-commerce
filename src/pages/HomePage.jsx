@@ -18,6 +18,7 @@ const HomePage = () => {
     const { isGrid } = useSelector(state => state.productStore);
     const dispatch = useDispatch();
 
+    //all products or category
     useEffect(() => {
         if (selectCategory) {
             productServices.getAllProductsByCategory(selectCategory)
@@ -30,11 +31,17 @@ const HomePage = () => {
         }
     }, [selectCategory, loadMore])
 
+    //search input
     useEffect(() => {
         productServices.searchProductService(searchProduct)
             .then(res => dispatch(saveAllProductAction(res.data.products)))
             .catch(err => console.log(err))
     }, [searchProduct])
+
+    //scroll to top
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div>

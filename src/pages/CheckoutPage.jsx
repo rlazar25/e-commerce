@@ -1,9 +1,15 @@
+import { useEffect } from "react";
 // react-router-dom
 import { Link } from "react-router-dom"
 // icons
 import { CiDeliveryTruck } from "react-icons/ci";
 
 const CheckoutPage = () => {
+
+    // scroll to top
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className="flex flex-col items-center text-2xl gap-3">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import CardProductComponent from "../components/CardProductComponent";
@@ -14,6 +14,11 @@ const FavoritePage = () => {
     const { allFavorite } = useSelector(state => state.favoriteStore);
 
     const dispatch = useDispatch();
+
+    //scroll to top
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className="container mx-auto px-8 ">

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 // mui
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody } from "@mui/material";
 // redux
@@ -29,6 +29,11 @@ const CartPage = () => {
         setCuponCode(cuponCodeRef.current.value);
         cuponCodeRef.current.value = "";
     }
+
+    // scroll to top
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className='my-[50px]'>

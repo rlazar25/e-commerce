@@ -31,6 +31,7 @@ const SingleProductPage = () => {
     const { allFavorite } = useSelector(state => state.favoriteStore)
     const favoriteItem = allFavorite.find(product => product.id === singleProduct.id)
 
+    // get single product
     useEffect(() => {
         productServices.getSingleProductService(id)
             .then(res => {
@@ -43,7 +44,7 @@ const SingleProductPage = () => {
     // scroll to top
     useEffect(() => {
         window.scrollTo(0, 0)
-    }, [id])
+    }, [])
 
     const notify = () => toast.success("Added to Cart", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const warningMsg = () => toast.warning("Out of Stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
