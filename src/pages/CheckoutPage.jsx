@@ -3,14 +3,14 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom"
 // icons
 import { CiDeliveryTruck } from "react-icons/ci";
+// custom hooks
+import useTopLoad from "../hooks/useTopLoad";
+
 
 const CheckoutPage = () => {
 
-    // scroll to top
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-
+    // load on top
+    useTopLoad()
     return (
         <div className="flex flex-col items-center text-2xl gap-3">
             <p className="text-3xl mt-12">Thank you for your order</p>

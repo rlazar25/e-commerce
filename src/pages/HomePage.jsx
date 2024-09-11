@@ -10,6 +10,8 @@ import LoaderComponent from "../components/LoaderComponent";
 // ICONS
 import { CiGrid41, CiBoxList } from "react-icons/ci";
 import CategoryComponent from "../components/Header/CategoryComponent";
+// custom hooks
+import useTopLoad from "../hooks/useTopLoad";
 
 const HomePage = () => {
 
@@ -38,10 +40,8 @@ const HomePage = () => {
             .catch(err => console.log(err))
     }, [searchProduct])
 
-    //scroll to top
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+    // load on top
+    useTopLoad()
 
     return (
         <div>

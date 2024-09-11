@@ -16,6 +16,8 @@ import { favoriteStateAction } from "../store/favoriteSlice";
 // toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// custom hooks
+import useTopLoad from "../hooks/useTopLoad";
 
 const SingleProductPage = () => {
 
@@ -41,10 +43,8 @@ const SingleProductPage = () => {
             .catch(err => console.log(err))
     }, [])
 
-    // scroll to top
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+    //  load on top
+   useTopLoad()
 
     const notify = () => toast.success("Added to Cart", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const warningMsg = () => toast.warning("Out of Stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });

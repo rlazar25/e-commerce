@@ -8,6 +8,9 @@ import { clearCartAction, decreaseQuantityProduct, increaseQuantityProduct, remo
 import { toast, ToastContainer } from "react-toastify";
 // react-router-dom
 import { Link } from "react-router-dom";
+// custom hooks
+import useTopLoad from "../hooks/useTopLoad";
+
 
 const CartPage = () => {
 
@@ -22,7 +25,7 @@ const CartPage = () => {
     const warningMsg = () => toast.warning("Out of stock", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const deleteMsg = () => toast.error("Item Removed", { autoClose: 1000, position: "bottom-right", theme: "colored" });
     const clearCartMsg = () => toast.error("Cart Cleared", { autoClose: 1000, position: "bottom-right", theme: "colored" });
-    
+
 
     // handler
     const handleCuponCode = () => {
@@ -30,10 +33,8 @@ const CartPage = () => {
         cuponCodeRef.current.value = "";
     }
 
-    // scroll to top
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+    // load on top
+    useTopLoad()
 
     return (
         <div className='my-[50px]'>
@@ -60,7 +61,7 @@ const CartPage = () => {
                                         <TableCell component="th" scope="row">
                                             <Link to={`/singleProduct/${product.id}`} className="flex gap-2 items-center">
                                                 <img src={product.thumbnail} alt="" className='w-[90px] h-[90px] border border-mainBlue rounded-lg object-cover ' />
-                                                <p title={product.title}  className="hidden md:inline text-xl font-semibold text-mainBlue truncate ">{product.title}</p>
+                                                <p title={product.title} className="hidden md:inline text-xl font-semibold text-mainBlue truncate ">{product.title}</p>
                                             </Link>
                                         </TableCell>
                                         <TableCell align="center">${product.price}</TableCell>
@@ -90,7 +91,7 @@ const CartPage = () => {
                     </TableContainer>
                     <div className='flex justify-evenly lg:justify-start gap-4 mt-5 '>
                         <Link to={'/'} className='bg-mainYellow hover:bg-mainBlue text-white px-5 py-3 rounded-lg self-start'>Continue Shopping</Link>
-                        <button onClick={() => {dispatch(clearCartAction()); clearCartMsg()}}  className='bg-red-500 hover:bg-red-600  text-white px-5 py-3 rounded-lg self-start'>Clear Cart</button>
+                        <button onClick={() => { dispatch(clearCartAction()); clearCartMsg() }} className='bg-red-500 hover:bg-red-600  text-white px-5 py-3 rounded-lg self-start'>Clear Cart</button>
                     </div>
                 </div>
                 {/* INFO/CART */}
@@ -103,14 +104,14 @@ const CartPage = () => {
                         </div>
                         <div className="flex flex-col gap-4 border-b py-5 border-slate-700">
                             <input ref={cuponCodeRef} className="border placeholder:text-slate-700 border-slate-300 p-2 w-full rounded-lg" type="text" placeholder="Enter Coupon Code" />
-                            <button disabled={cuponCode === 'your smile'} onClick={handleCuponCode} className={cuponCode === 'your smile' ? "bg-slate-400 line-through duration-500 text-black py-2 w-full rounded-lg" : "bg-mainBlue hover:bg-mainYellow  duration-500 text-white py-2 w-full rounded-lg "}> {cuponCode === 'your smile' ? 'Cupon Applied' : 'Apply Cupon Code'}</button> 
+                            <button disabled={cuponCode === 'your smile'} onClick={handleCuponCode} className={cuponCode === 'your smile' ? "bg-slate-400 line-through duration-500 text-black py-2 w-full rounded-lg" : "bg-mainBlue hover:bg-mainYellow  duration-500 text-white py-2 w-full rounded-lg "}> {cuponCode === 'your smile' ? 'Cupon Applied' : 'Apply Cupon Code'}</button>
                         </div>
                         <div className="flex flex-col gap-4 py-5">
                             <div className="flex justify-between text-[20px] font-semibold">
                                 <p>Total Amount: </p>
                                 <p>${cuponCode === 'your smile' ? (totalPrice / 2).toFixed(2) : totalPrice.toFixed(2)}</p>
                             </div>
-                            <Link to={'/checkout'} onClick={() => {dispatch(clearCartAction())}} className="bg-mainBlue hover:bg-mainYellow text-center duration-500 text-white py-2 w-full rounded-lg self-start">Buy Now</Link>
+                            <Link to={'/checkout'} onClick={() => { dispatch(clearCartAction()) }} className="bg-mainBlue hover:bg-mainYellow text-center duration-500 text-white py-2 w-full rounded-lg self-start">Buy Now</Link>
                         </div>
                     </div>
 

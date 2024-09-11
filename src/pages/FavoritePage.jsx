@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 // ICONS
 import { CiGrid41, CiBoxList } from "react-icons/ci";
 import { gridListDisplayAction } from "../store/productSlice";
+// custom hooks
+import useTopLoad from "../hooks/useTopLoad";
+
 
 const FavoritePage = () => {
 
@@ -15,11 +18,8 @@ const FavoritePage = () => {
 
     const dispatch = useDispatch();
 
-    //scroll to top
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-
+    // load on top
+    useTopLoad()
     return (
         <div className="container mx-auto px-8 ">
             {allFavorite.length > 0 && <div className="hidden md:flex justify-end mt-4 gap-2">
